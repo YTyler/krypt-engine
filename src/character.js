@@ -17,7 +17,7 @@ export class Character {
     };
     this.inventory = {bag:[], bagSpace: 10};
     this.equipment = {
-      weapon: '',
+      weapon:'',
       hands:'',
       chest:'',
       legs:'',
@@ -30,33 +30,14 @@ export class Character {
     target.health -= damage;
     return damage;
   }
-
-
-
-
-
-
-
-
-
-  // levelUp(strUp, intUp, conUp, endUp) {
-  //   this.stats.str += strUp;
-  //   this.stats.int += intUp;
-  //   this.stats.con += conUp;
-  //   this.stats.end += endUp;
-  //   return 'Level Up';
-  // }
-
-  // buy(item) {
-  //   if(this.money === item.cost){
-  //     this.inventory.bag.push(item);
-  //     return "Purchased";
-  //   }
-  //
-  // }
-  // sell() {
-  //
-  // }
-
+  equip(equipment) {
+    const keys = Object.keys(this.equipment);
+    console.log(this.equipment);
+    for (let i = 0; i < keys.length; i++) {
+      if (keys[i] === equipment.type){
+        this.equipment[keys[i]] = equipment;
+      }
+    }
+  }
 
 }
