@@ -6,13 +6,19 @@ import './styles.css';
 
 
 $(document).ready(function(){
-  $("#goCave").click(function(event) {
+  $(".goCave").click(function(event) {
     event.preventDefault();
     $("#forest").hide();
+    $("#crypt").hide();
     $("#cave").show();
   });
 
-$("#goCrypt").click(function(event) {
+  $(".goForest").click(function(event) {
+      $("#cave").hide();
+      $("#forest").show();
+    });
+
+$(".goCrypt").click(function(event) {
     $("#cave").hide();
     $("#crypt").show();
   });
