@@ -6,16 +6,24 @@ import './styles.css';
 
 
 $(document).ready(function(){
-  $("#magicButton").click(function(event) {
+  $("#goCave").click(function(event) {
     event.preventDefault();
-
-    const magicInput = $("#magicInput").val();
-    $('#magicProgress').animate({ width: magicInput + "%"});
+    $("#forest").hide();
+    $("#cave").show();
   });
 
-
-  $("#healthButton").click(function() {
-    const healthInput = $("#healthInput").val();
-    $('#healthProgress').animate({ width: healthInput + "%"});
+$("#goCrypt").click(function(event) {
+    $("#cave").hide();
+    $("#crypt").show();
   });
 });
+
+
+  //   const magicInput = $("#magicInput").val();
+  //   $('#magicProgress').animate({ width: magicInput + "%"});
+  // });
+  //
+  //
+  // $("#healthButton").click(function() {
+  //   const healthInput = $("#healthInput").val();
+  //   $('#healthProgress').animate({ width: healthInput + "%"});
