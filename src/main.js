@@ -6,8 +6,16 @@ import './styles.css';
 
 
 $(document).ready(function(){
-  $('form').submit(function(event){
+  $("#magicButton").click(function(event) {
     event.preventDefault();
 
+    const magicInput = $("#magicInput").val();
+    $('#magicProgress').animate({ width: magicInput + "%"});
+  });
+
+
+  $("#healthButton").click(function() {
+    const healthInput = $("#healthInput").val();
+    $('#healthProgress').animate({ width: healthInput + "%"});
   });
 });

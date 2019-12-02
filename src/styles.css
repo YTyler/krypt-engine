@@ -1,0 +1,65 @@
+
+
+.statsCard {
+  font-family: cursive;
+  text-align: center;
+  background-color: #A57350;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.vitalities {
+  background-color: #C2A078;
+  height: 100px;
+  width: 100%;
+  padding: 2%;
+  border: 2px solid #7B4A28;
+  border-radius: 5px;
+}
+
+
+#healthBackground {
+  border-radius: 20px;
+  background-color: grey;
+  border: 2px solid black;
+  width: 30%;
+  height: 30px;
+}
+
+#healthProgress {
+  border-radius: 20px;
+  background-color: green;
+  width: 0% ;
+  height: 25px;
+}
+
+#forest {
+}
+
+#GameWindow {
+  position: relative;
+  width: 1200px;
+  height: 1000px;
+  background-image: url("https://images.unsplash.com/photo-1455358447200-02f2a6c9dcd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3067&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+#magicBackground {
+  border-radius: 20px;
+  background-color: grey;
+  border: 2px solid black;
+  width: 30%;
+  height: 30px;
+}
+#magicProgress {
+  border-radius: 20px;
+  background-color: gold;
+  width: 0% ;
+  height: 25px;
+}
