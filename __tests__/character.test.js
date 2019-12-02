@@ -4,7 +4,7 @@ import {Equipment} from './../src/equipment.js'
 describe('Character', () => {
   let player = new Character(7,3,5,5);
   let longSword = new Equipment('weapon',3,-1,0,0);
-
+  let leatherBoots
   test('test stat alignment', () => {
     expect(player.stats.str).toEqual(7);
     expect(player.stats.int).toEqual(3);

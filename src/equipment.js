@@ -1,6 +1,6 @@
 export class Equipment {
-  constructor(type,str,int,con,end){
+  constructor(type,str,int,con,mag){
     this.type = type,
-    this.stats = [str,int,con,end];
+    this.stats = [str,int,con,mag];
   }
 }

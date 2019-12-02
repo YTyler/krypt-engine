@@ -1,19 +1,19 @@
 
 //Character Class
 export class Character {
-  constructor(str, int, con, end){
+  constructor(str, int, con, mag){
   //Character Attributes
     //this.level = 1;
     //this.xp = 0;
     //this.money = 0;
     //this.armor = //calculate armor;
     this.health = con * 10;
-    this.stamina = end * 10;
+    this.magic = mag * 10;
     this.stats = {
       str: str,
       int: int,
       con: con,
-      end: end
+      mag: mag
     };
     this.inventory = {bag:[], bagSpace: 10};
     this.equipment = {
