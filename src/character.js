@@ -47,9 +47,7 @@ export class Character {
     target.health -= damage;
     return damage;
   }
-
-
-  //Utility Methods
+  //Management Methods
   equip(equipment) {
     const keys = Object.keys(this.equipment);
     for (let i = 0; i < keys.length; i++) {
@@ -59,6 +57,12 @@ export class Character {
     }
   }
 
+  use(item, target) {
+    // if (true) // Cycle through inventory for availabilty
+    target[item.type] += item.amount;
+  }
+
+  //Utility Methods
   armorValues() {
     let temp = [0,0,0,0];
     const keys = Object.keys(this.equipment);

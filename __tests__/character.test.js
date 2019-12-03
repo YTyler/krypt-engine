@@ -1,6 +1,10 @@
 import {Character} from './../src/character.js';
 import {Equipment} from './../src/equipment.js';
-import {Spell} from './../src/spell.js'
+import {Spell} from './../src/spell.js';
+import {Item} from './../src/item.js';
+
+
+
 
 describe('Character', () => {
 let player
@@ -11,6 +15,7 @@ let leatherBody
 let leatherBoots
 let criticalStrike
 let magicRockets
+let healthPotion
 
   beforeEach(() => {
     player = new Character(7,3,5,5);
@@ -21,6 +26,7 @@ let magicRockets
     leatherBoots = new Equipment('legs',0,0,1,0);
     criticalStrike = new Spell(.5,0,10);
     magicRockets = new Spell(2,0,10);
+    healthPotion = new Item (50,'health');
 
     player.equip(longSword);
     player.equip(fingerGloves);
@@ -54,5 +60,10 @@ let magicRockets
   test('spells-combat test', () => {
     player.castStr(criticalStrike, enemy);
     expect(enemy.health).toEqual(6.5);
+  });
+  test('using items test', () =>{
+    player.health = 50;
+    player.use(healthPotion, player);
+    expect(player.health).toEqual(100);
   });
 });
