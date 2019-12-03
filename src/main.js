@@ -6,7 +6,7 @@ import './styles.css';
 
 
 $(document).ready(function(){
-//Navigation
+  //Navigation
   $(".goCave").click(function(event) {
     event.preventDefault();
     $("#forest").hide();
@@ -36,23 +36,21 @@ $(document).ready(function(){
     $("#cryptNarration").hide();
   });
 
-//Combat
+  //Combat
   $('#attackSubmit').click(function() {
     let target = $("input[name=target]:checked").val();
-    // let damage = player.attack(target);
-    console.log(target);
-    // return damage;
+    let damage = player.attack(target);
+    $(`#${target} + Health`).html(`<p id="damageOutput">${damage}</p>`);
+    setTimeout(function(){
+      $(`#${target} + Health`).html(``);
+    }, 3000);
+    
+    // let target = "en1";
+    // let damage = 25;
+    // $("#en1Damage").html("hi");
+    // setTimeout(function(){
+    //   $("#en1Damage").html("");
+    // }, 3000);
+    // console.log(damage);
   });
-
-
 });
-
-
-//   const magicInput = $("#magicInput").val();
-//   $('#magicProgress').animate({ width: magicInput + "%"});
-// });
-//
-//
-// $("#healthButton").click(function() {
-  //   const healthInput = $("#healthInput").val();
-  //   $('#healthProgress').animate({ width: healthInput + "%"});
