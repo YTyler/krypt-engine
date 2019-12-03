@@ -1,5 +1,3 @@
-
-//Character Class
 export class Character {
   constructor(str, int, con, mag){
   //Character Attributes
@@ -47,6 +45,7 @@ export class Character {
     target.health -= damage;
     return damage;
   }
+
   //Management Methods
   equip(equipment) {
     const keys = Object.keys(this.equipment);
@@ -58,8 +57,13 @@ export class Character {
   }
 
   use(item, target) {
-    // if (true) // Cycle through inventory for availabilty
-    target[item.type] += item.amount;
+    if (this.checkInventory(item)){
+      target[item.type] += item.amount;
+
+    }else{
+      return 'not available';
+    }
+
   }
 
   //Utility Methods
@@ -78,6 +82,13 @@ export class Character {
       if (temp[i] < 0) { temp[i] = 0; }
     }
     return temp;
+  }
+
+  checkInventory(item){
+    for (var i = 0; i < this.inventory.bag.length; i++) {
+      if (this.inventory.bag[i] === item) {return true;}
+      else {return false;}
+    }
   }
 
 }
