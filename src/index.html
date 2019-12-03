@@ -8,10 +8,11 @@
   <h1>Darkness: <br> The Crypt Adventure</h1>
   <div id="GameWindow">
 
+    <!-- Story Scenes -->
     <div id="forest">
       <img class="backgroundImage"src="https://images.unsplash.com/photo-1455358447200-02f2a6c9dcd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3067&q=80">
       <div class="narration" id="forestNarration">
-          <h3>You wake in the forest after days of travel. The village you come from has been plagued by undead and you have tracked them to these caves.</h3>
+        <h3>You wake in the forest after days of travel. The village you come from has been plagued by undead and you have tracked them to these caves.</h3>
       </div>
       <div class="options">
         <button class="option" type="click" name="berry">Forage</button>
@@ -24,7 +25,7 @@
     <div id="cave">
       <img class="backgroundImage"src="https://www.goodfreephotos.com/albums/united-states/alabama/other/entrance-to-russell-cave-alabama.jpg">
       <div class="narration" id="caveNarration">
-          <h3>Though life surrounds the entrance, the scent of death is carried out from within the cave.</h3>
+        <h3>Though life surrounds the entrance, the scent of death is carried out from within the cave.</h3>
       </div>
       <button class="goCrypt movementCenter" name="toCrypt">Enter Cave</button>
 
@@ -35,19 +36,68 @@
     <div id="crypt">
       <img class="backgroundImage" src="https://www.factinate.com/wp-content/uploads/2018/06/34-3.jpg" alt="">
       <div class="narration" id="cryptNarration">
-          <h3>Grateful for your torch, you plunge into the depths of a long forgotten crypt. The sounds of movement beyond the light keep you on your toes, and you feel as though you are being watched.</h3>
+        <h3>Grateful for your torch, you plunge into the depths of a long forgotten crypt. The sounds of movement beyond the light keep you on your toes, and you feel as though you are being watched.</h3>
       </div>
-    <button class="goCave movementLeft" name="toCave">The Cave</button>
+      <button class="goCave movementLeft" name="toCave">The Cave</button>
     </div>
 
+    <!-- Combat Window -->
+    <div class="combatWindow">
+      <div class="playerLocation">
+        PC
+      </div>
+      <div class="backup1">
+        b1
+      </div>
+      <div class="backup2">
+        b2
+      </div>
+
+      <div class="enemy1">
+        1
+      </div>
+      <div class="enemy2">
+        2
+      </div>
+      <div class="enemy3">
+        3
+      </div>
+      <div class="enemy4">
+        4
+      </div>
+
+      <button type="button" name="attack">Attack!</button>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Magic!
+        </button>
+        <div id="magicSpells" class="dropdown-menu">
+          <!-- <a class="dropdown-item" href="#">Action</a> -->
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Item!
+        </button>
+        <div id="items" class="dropdown-menu">
+          <!-- <a class="dropdown-item" href="#">Action</a> -->
+        </div>
+        <button type="button" name="flee">Flee!</button>
+      </div>
+    </div>
+
+    <!-- Death Scene -->
     <div id="youAreDead">
       <img class="backgroundImage" src="https://c.pxhere.com/photos/ab/45/skulls_horror_death-910151.jpg!d" alt="You Are Dead">
       <div class="narration" id="forestNarration">
-          <h3>Your soul is forfiet!</h3>
+        <h3>Your soul is forfiet!</h3>
       </div>
     </div>
 
 
+    <!-- Character Card -->
     <div id="characterCard">
       <div class="statsCard">
         <div class="namePlate">
