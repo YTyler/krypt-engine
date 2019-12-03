@@ -9,7 +9,7 @@ export class Character {
     //this.armor = //calculate armor;
     this.health = con * 10;
     this.magic = mag * 10;
-    this.stats = {
+    this.attributes = {
       str: str,
       int: int,
       con: con,
@@ -26,11 +26,28 @@ export class Character {
   //Character Methods
   //Combat Methods
   attack(target) {
-    let mods = this.armorValues();
-    const damage = this.stats.str + mods[0];
+    let eStats = this.armorValues();
+    const damage = this.attributes.str + eStats[0];
     target.health -= damage;
     return damage;
   }
+
+  castInt(spell, target) {
+    let eStats = this.armorValues();
+    let damage = this.attributes.int + (this.attributes.int * spell.baseMod);
+    damage += eStats[1];
+    target.health -= damage;
+    return damage;
+  }
+
+  castStr(spell, target) {
+    let eStats = this.armorValues();
+    let damage = this.attributes.str + (this.attributes.str * spell.baseMod);
+    damage += eStats[0];
+    target.health -= damage;
+    return damage;
+  }
+
 
   //Utility Methods
   equip(equipment) {
@@ -52,6 +69,9 @@ export class Character {
         temp[2] += this.equipment[keys[i]].stats[2];
         temp[3] += this.equipment[keys[i]].stats[3];
       }
+    }
+    for (let i = 0; i < temp.length; i++) {
+      if (temp[i] < 0) { temp[i] = 0; }
     }
     return temp;
   }
