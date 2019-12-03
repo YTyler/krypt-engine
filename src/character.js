@@ -5,8 +5,8 @@ export class Character {
     //this.xp = 0;
     //this.money = 0;
     //this.armor = //calculate armor;
-    this.health = con * 10;
-    this.magic = mag * 10;
+    this.health = {value:con * 10, max:con*10};
+    this.magic = {value:mag * 10, max:mag * 10};
     this.attributes = {
       str: str,
       int: int,
@@ -26,7 +26,7 @@ export class Character {
   attack(target) {
     let eStats = this.armorValues();
     const damage = this.attributes.str + eStats[0];
-    target.health -= damage;
+    target.health.value -= damage;
     return damage;
   }
 
@@ -34,7 +34,7 @@ export class Character {
     let eStats = this.armorValues();
     let damage = this.attributes.int + (this.attributes.int * spell.baseMod);
     damage += eStats[1];
-    target.health -= damage;
+    target.health.value -= damage;
     return damage;
   }
 
@@ -42,7 +42,7 @@ export class Character {
     let eStats = this.armorValues();
     let damage = this.attributes.str + (this.attributes.str * spell.baseMod);
     damage += eStats[0];
-    target.health -= damage;
+    target.health.value -= damage;
     return damage;
   }
 
@@ -58,12 +58,14 @@ export class Character {
 
   use(item, target) {
     if (this.checkInventory(item)){
-      target[item.type] += item.amount;
-
-    }else{
+      target[item.type].value += item.amount;
+      if (target[item.type].value > target[item.type].max) {
+        target[item.type].value = target[item.type].max;
+      }
+      item.quantity -= 1;
+    } else {
       return 'not available';
     }
-
   }
 
   //Utility Methods
@@ -89,6 +91,16 @@ export class Character {
       if (this.inventory.bag[i] === item) {return true;}
       else {return false;}
     }
+  }
+
+  resetInventory() {
+    let temp = [];
+    for (let i = 0; i < this.inventory.bag.length; i++) {
+      if (this.inventory.bag[i]) {
+        temp.push(this.inventory.bag[i])
+      }
+    }
+    this.inventory.bag = temp;
   }
 
 }
