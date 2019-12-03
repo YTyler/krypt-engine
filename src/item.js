@@ -1,7 +1,7 @@
 export class Item {
-  constructor (amount, type) {
+  constructor (amount, type, quantity=1) {
     this.amount = amount,
     this.type = type,
-    this.quantity = 1;
+    this.quantity = quantity;
   }
 }

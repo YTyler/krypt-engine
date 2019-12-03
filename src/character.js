@@ -97,7 +97,7 @@ export class Character {
     let temp = [];
     for (let i = 0; i < this.inventory.bag.length; i++) {
       if (this.inventory.bag[i]) {
-        temp.push(this.inventory.bag[i])
+        temp.push(this.inventory.bag[i]);
       }
     }
     this.inventory.bag = temp;
