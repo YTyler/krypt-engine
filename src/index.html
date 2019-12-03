@@ -1,10 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <h1>Darkness: <br> The Crypt Adventure</h1>
+  <div id="GameWindow">
 
-  </body>
+    <div id="forest">
+      <img class="backgroundImage"src="https://images.unsplash.com/photo-1455358447200-02f2a6c9dcd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3067&q=80">
+      <div class="narration" id="forestNarration">
+          <h3>You wake in the forest after days of travel. The village you come from has been plagued by undead and you have tracked them to these caves.</h3>
+      </div>
+      <div class="options">
+        <button class="option" type="click" name="berry">Forage</button>
+        <button class="option" type="click" name="camp">Camp</button>
+      </div>
+
+      <button class="goCave movementRight" name="toCave">The Cave</button>
+    </div>
+
+    <div id="cave">
+      <img class="backgroundImage"src="https://www.goodfreephotos.com/albums/united-states/alabama/other/entrance-to-russell-cave-alabama.jpg">
+      <div class="narration" id="caveNarration">
+          <h3>Though life surrounds the entrance, the scent of death is carried out from within the cave.</h3>
+      </div>
+      <button class="goCrypt movementCenter" name="toCrypt">Enter Cave</button>
+
+      <button class="goForest movementLeft" name="button">The Forest</button>
+
+    </div>
+
+    <div id="crypt">
+      <img class="backgroundImage" src="https://www.factinate.com/wp-content/uploads/2018/06/34-3.jpg" alt="">
+      <div class="narration" id="cryptNarration">
+          <h3>Grateful for your torch, you plunge into the depths of a long forgotten crypt. The sounds of movement beyond the light keep you on your toes, and you feel as though you are being watched.</h3>
+      </div>
+    <button class="goCave movementLeft" name="toCave">The Cave</button>
+    </div>
+
+    <div id="youAreDead">
+      <img class="backgroundImage" src="https://c.pxhere.com/photos/ab/45/skulls_horror_death-910151.jpg!d" alt="You Are Dead">
+      <div class="narration" id="forestNarration">
+          <h3>Your soul is forfiet!</h3>
+      </div>
+    </div>
+
+
+    <div id="characterCard">
+      <div class="statsCard">
+        <div class="namePlate">
+          <h3 id="name">Sir WhateverAlot</h3>
+        </div>
+        <div class="vitalities">
+          <div id="magicBackground">
+            <div id='magicProgress'>
+              <p class="barTitle">Magic</p>
+            </div>
+          </div>
+          <div id="healthBackground">
+            <div id='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

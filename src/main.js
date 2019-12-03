@@ -6,8 +6,43 @@ import './styles.css';
 
 
 $(document).ready(function(){
-  $('form').submit(function(event){
+  $(".goCave").click(function(event) {
     event.preventDefault();
-
+    $("#forest").hide();
+    $("#crypt").hide();
+    $("#cave").show();
   });
+
+  $("#forestNarration").click(function() {
+    $("#forestNarration").hide();
+  });
+
+  $(".goForest").click(function() {
+    $("#cave").hide();
+    $("#forest").show();
+  });
+
+  $("#caveNarration").click(function() {
+    $("#caveNarration").hide();
+  });
+
+  $(".goCrypt").click(function() {
+    $("#cave").hide();
+    $("#crypt").show();
+  });
+
+  $("#cryptNarration").click(function() {
+    $("#cryptNarration").hide();
+  });
+
 });
+
+
+//   const magicInput = $("#magicInput").val();
+//   $('#magicProgress').animate({ width: magicInput + "%"});
+// });
+//
+//
+// $("#healthButton").click(function() {
+  //   const healthInput = $("#healthInput").val();
+  //   $('#healthProgress').animate({ width: healthInput + "%"});
