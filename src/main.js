@@ -1,4 +1,4 @@
-// import {Placeholder} from './back.js';
+import {Character} from './character.js';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,6 +6,7 @@ import './styles.css';
 
 
 $(document).ready(function(){
+//Navigation
   $(".goCave").click(function(event) {
     event.preventDefault();
     $("#forest").hide();
@@ -34,6 +35,15 @@ $(document).ready(function(){
   $("#cryptNarration").click(function() {
     $("#cryptNarration").hide();
   });
+
+//Combat
+  $('#attackSubmit').click(function() {
+    let target = $("input[name=target]:checked").val();
+    // let damage = player.attack(target);
+    console.log(target);
+    // return damage;
+  });
+
 
 });
 

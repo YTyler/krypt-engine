@@ -43,49 +43,108 @@
 
     <!-- Combat Window -->
     <div class="combatWindow">
-      <div class="playerLocation">
-        PC
-      </div>
-      <div class="backup1">
-        b1
-      </div>
-      <div class="backup2">
-        b2
-      </div>
+      <form id="combatIntake" action="index.html" method="post">
 
-      <div class="enemy1">
-        1
-      </div>
-      <div class="enemy2">
-        2
-      </div>
-      <div class="enemy3">
-        3
-      </div>
-      <div class="enemy4">
-        4
-      </div>
 
-      <button type="button" name="attack">Attack!</button>
-
-      <div class="btn-group">
-        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Magic!
-        </button>
-        <div id="magicSpells" class="dropdown-menu">
-          <!-- <a class="dropdown-item" href="#">Action</a> -->
+        <div class="playerLocation">
+          <div   class="healthBackground">
+            <div class="playerProgress" class='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+          <input type="radio" class="target" name="target" value="player"> PC<br>
+          PC
         </div>
-      </div>
 
-      <div class="btn-group">
-        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Item!
-        </button>
-        <div id="items" class="dropdown-menu">
-          <!-- <a class="dropdown-item" href="#">Action</a> -->
+        <div class="backup1">
+          <div class="healthBackground">
+            <div id="b1Health"class='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+          <input type="radio" class="target" name="target" value="b1"> b1<br>
+          b1
         </div>
-        <button type="button" name="flee">Flee!</button>
-      </div>
+
+        <div class="backup2">
+          <div class="healthBackground">
+            <div id="b2Health"class='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+          <input type="radio" class="target" name="target" value="b2"> b1<br>
+          b2
+        </div>
+
+        <div class="enemy1">
+          <div class="healthBackground">
+            <div id="en1Health"class='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+          <input type="radio" class="target" name="target" value="en1"> en1<br>
+          1
+        </div>
+
+        <div class="enemy2">
+          <div class="healthBackground">
+            <div id="en2Health" class='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+          <input type="radio" class="target" name="target" value="en2"> en2<br>
+          2
+        </div>
+
+        <div class="enemy3">
+          <div class="healthBackground">
+            <div id="en3Health"class='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+          <input type="radio" class="target" name="target" value="en3"> en3<br>
+          3
+        </div>
+
+        <div class="enemy4">
+          <div class="healthBackground">
+            <div id="en4Health"class='healthProgress'>
+              <p class="barTitle">Health</p>
+            </div>
+          </div>
+          <input type="radio" class="target" name="target" value="en4"> en4<br>
+          4
+        </div>
+
+        <div class="combatOptions">
+
+          <button id="attackSubmit" type="button" name="attack">Attack!</button>
+
+          <div class="btn-group dropup">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Magic!
+            </button>
+            <div id="magicSpells" class="dropdown-menu">
+              <!-- <a class="dropdown-item" href="#">Action</a> -->
+            </div>
+          </div>
+
+        <button id="castSubmit" type="button" name="cast">Cast!</button>
+
+          <div class="btn-group dropup">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Item!
+            </button>
+            <div id="items" class="dropdown-menu">
+              <!-- <a class="dropdown-item" href="#">Action</a> -->
+            </div>
+
+        <button id="useSubmit" type="button" name="use">Use!</button>
+
+            <button type="button" name="flee">Flee!</button>
+          </div>
+        </div>
+      </form>
     </div>
 
     <!-- Death Scene -->
@@ -95,6 +154,7 @@
         <h3>Your soul is forfiet!</h3>
       </div>
     </div>
+
 
 
     <!-- Character Card -->
@@ -110,7 +170,7 @@
             </div>
           </div>
           <div id="healthBackground">
-            <div id='healthProgress'>
+            <div id='healthProgress' class="playerProgress">
               <p class="barTitle">Health</p>
             </div>
           </div>
