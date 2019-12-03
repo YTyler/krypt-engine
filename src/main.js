@@ -13,23 +13,36 @@ $(document).ready(function(){
     $("#cave").show();
   });
 
-  $(".goForest").click(function(event) {
-      $("#cave").hide();
-      $("#forest").show();
-    });
+  $("#forestNarration").click(function() {
+    $("#forestNarration").hide();
+  });
 
-$(".goCrypt").click(function(event) {
+  $(".goForest").click(function() {
+    $("#cave").hide();
+    $("#forest").show();
+  });
+
+  $("#caveNarration").click(function() {
+    $("#caveNarration").hide();
+  });
+
+  $(".goCrypt").click(function() {
     $("#cave").hide();
     $("#crypt").show();
   });
+
+  $("#cryptNarration").click(function() {
+    $("#cryptNarration").hide();
+  });
+
 });
 
 
-  //   const magicInput = $("#magicInput").val();
-  //   $('#magicProgress').animate({ width: magicInput + "%"});
-  // });
-  //
-  //
-  // $("#healthButton").click(function() {
+//   const magicInput = $("#magicInput").val();
+//   $('#magicProgress').animate({ width: magicInput + "%"});
+// });
+//
+//
+// $("#healthButton").click(function() {
   //   const healthInput = $("#healthInput").val();
   //   $('#healthProgress').animate({ width: healthInput + "%"});
