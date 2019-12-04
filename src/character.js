@@ -26,25 +26,17 @@ export class Character {
   //Character Methods
   //Combat Methods
   attack(target) {
-    let eStats = this.armorValues();
-    const damage = this.attributes.str + eStats[0];
+    let equipmentStats = this.armorValues();
+    const damage = this.attributes.str + equipmentStats.str;
     target.health.value -= damage;
     return damage;
   }
 
-  castInt(spell, target) {
-    let eStats = this.armorValues();
-    let damage = this.attributes.int + (this.attributes.int * spell.baseMod);
-    damage += eStats[1];
+  cast(spell, target) {
+    let equipmentStats = this.armorValues();
+    let damage = spell.calculate(this.attributes, equipmentStats);
     target.health.value -= damage;
-    return damage;
-  }
-
-  castStr(spell, target) {
-    let eStats = this.armorValues();
-    let damage = this.attributes.str + (this.attributes.str * spell.baseMod);
-    damage += eStats[0];
-    target.health.value -= damage;
+    this.magic.value -= spell.cost;
     return damage;
   }
 
@@ -92,19 +84,21 @@ export class Character {
 
 
   armorValues() {
-    let temp = [0,0,0,0];
+    let temp = {str:0, int:0, con:0, mag:0};
     const keys = Object.keys(this.equipment);
     for (let i = 0; i < keys.length; i++) {
       if (this.equipment[keys[i]]) {
-        temp[0] += this.equipment[keys[i]].stats[0];
-        temp[1] += this.equipment[keys[i]].stats[1];
-        temp[2] += this.equipment[keys[i]].stats[2];
-        temp[3] += this.equipment[keys[i]].stats[3];
+        temp.str += this.equipment[keys[i]].stats[0];
+        temp.int += this.equipment[keys[i]].stats[1];
+        temp.con += this.equipment[keys[i]].stats[2];
+        temp.mag += this.equipment[keys[i]].stats[3];
       }
     }
-    for (let i = 0; i < temp.length; i++) {
-      if (temp[i] < 0) { temp[i] = 0; }
-    }
+    //NEGATIVE VALUES BECOME ZERO
+    //BROKEN BY CONVERTING TEMP FROM ARRAY TO OBJECT
+    // for (let i = 0; i < temp.length; i++) {
+    //   if (temp[i] < 0) { temp[i] = 0; }
+    // }
     return temp;
   }
 

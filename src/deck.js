@@ -1,6 +1,6 @@
 import {Character} from './character.js';
 import {Equipment} from './equipment.js';
-// import {Spell} from './spell.js';
+import {Spell} from './spell.js';
 import {Item} from './item.js';
 export {brawler, mage, thief, giantRat};
 
@@ -18,7 +18,7 @@ let thief = new Character(7,5,5,5);
 //giant rats
 let giantRat = [];
 for (let i = 0; i < rat_num; i++) {
-  giantRat.push(new Character(2,2,2,2));
+  giantRat.push(new Character(4,2,2,2));
 }
 
 //Equipment
@@ -47,6 +47,11 @@ let redPotion = new Item(25, 'magic');
 let bluePotion = new Item(25, 'magic');
 
 //Spells
+let bite = new Spell(4,0,15,'str');
+let tailWhip =  new Spell (2,0,5,'str');
+let charge = new Spell (3,0,10, 'str');
+let heavyBlow = new Spell (4,0,25,'str');
+// let sharpenSenses = new spell (0,0,5,'int'); // Light Heal?
 
 //Itemization
 
