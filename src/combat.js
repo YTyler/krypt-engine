@@ -14,7 +14,7 @@ const player = deck.brawler;
 export function combatStart(enemies) {
   let enemyArray = enemies; //enemy array changes depending on location or combat specs?
   $('.enemySide').html(''); //clears enemy slots
-console.log(enemies);
+  console.log(enemies);
 
 
   for (let i = 0; i < enemyArray.length; i++) { //populates enemies
@@ -33,56 +33,57 @@ console.log(enemies);
       `)
     }
 
-    console.log(player);
+    let deadCount = 0;
+
     while (player.health.value > 0) {
-      player.health.value -= 20;
+      player.health.value -= 20; //kills player
+      enemyArray[0].health.value -= 10;
       console.log(player.health.value);
+      console.log(enemyArray[0].health.value);
+
       //Player turn
 
-      let deadCount = 0;
       // alert("CombatStart")
-      if (deadCount < enemyArray.length) {
+      // if (deadCount <= enemyArray.length) {
         console.log("LoopStart");
 
-        $('#attackSubmit').click(function() {
-          console.log("Async");
-          let target = enemyArray[parseInt($("input[name=target]:checked").val())];
-          let damage = player.attack(target);
-          console.log("damage");
-          let damageNum = $("input[name=target]:checked").val();
-          console.log("damageNum");
+        // (async() => {
+          $('#attackSubmit').click(function() {
+            let target = enemyArray[parseInt($("input[name=target]:checked").val())];
+            let damage = player.attack(target);
+            console.log("damage");
 
-          // $(`#health${damageNum}`).html(`<p id="damageOutput">${damage}</p>`);
-          // setTimeout(function(){
-          //
-          //   $(`#${target} + Health`).html(``);
-          //   }, 3000);
-          // turn = true
+            // let damageNum = $("input[name=target]:checked").val();
+            // $(`#health${damageNum}`).html(`<p id="damageOutput">${damage}</p>`);
+            // setTimeout(function(){
+              //
+              //   $(`#${target} + Health`).html(``);
+              //   }, 3000);
+              // turn = true
 
-          console.log("Async");
+            });
+            // })();
 
-          });
+            // MonsterTurn
+            for (let j = 0; j < enemyArray.length; j++) {
+              console.log("j="+j);
+              if (enemyArray[j].health.value >= 0) {
+              setInterval(() => {
+                (enemyArray[j].attack(player));
+              }, 3000);
+            } else {
+                deadCount += 1;
+                if (deadCount >= enemyArray.length) {
+                  alert("youWinner you won");
+                  break;
+                } else {
+                  console.log("WHatever keep going");
+                }
 
-          // Add fade-out and sound
-          console.log("71");
-          // MonsterTurn
-          for (let j = 0; j < enemyArray; j++) {
-            if (enemyArray[j].health.value > 0)
-            setInterval(() => {
-              (j.attack(player));
-            }, 3000);
-            else {
-              deadCount += 1;
-              // Death Animation
-              (j++)
+              }
+              console.log("end of for");
             }
-            console.log("Async");
-          }
-          // alert('end of if')
-        } else {
-          alert("youWinner you won");
-          break;
+
         }
+        $('#youAreDead').show();
       }
-      // $('#youAreDead').show();
-    }
