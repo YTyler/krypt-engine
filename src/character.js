@@ -1,8 +1,8 @@
-import {Item} from './item.js'
+import {Item} from './item.js';
 
 export class Character {
   constructor(str, int, con, mag){
-  //Character Attributes
+    //Character Attributes
     //this.level = 1;
     //this.xp = 0;
     //this.money = 0;
@@ -22,6 +22,7 @@ export class Character {
       body:'',
       feet:'',
     };
+    this.spells = [];
   }
   //Character Methods
   //Combat Methods
@@ -33,11 +34,15 @@ export class Character {
   }
 
   cast(spell, target) {
-    let equipmentStats = this.armorValues();
-    let damage = spell.calculate(this.attributes, equipmentStats);
-    target.health.value -= damage;
-    this.magic.value -= spell.cost;
-    return damage;
+    if (this.magic.value >= spell.cost) {
+      let equipmentStats = this.armorValues();
+      let damage = spell.calculate(this.attributes, equipmentStats);
+      target.health.value -= damage;
+      this.magic.value -= spell.cost;
+      return damage;
+    } else {
+      return false;
+    }
   }
 
   //Management Methods
@@ -52,8 +57,8 @@ export class Character {
 
   pickUp(item){
     if(this.checkInventory(item.name)){
-       this.inventory.bag[this.searchItem(item.name)].quantity += 1;
-      }
+      this.inventory.bag[this.searchItem(item.name)].quantity += 1;
+    }
     else {
       this.inventory.bag.push(new Item(item.name, item.amount, item.type, item.quantity));
     }
@@ -71,7 +76,7 @@ export class Character {
         this.resetInventory();
       } // finish after pickUp function
     } else {
-      return 'not available';
+      return false;
     }
   }
 
@@ -97,26 +102,26 @@ export class Character {
     //NEGATIVE VALUES BECOME ZERO
     //BROKEN BY CONVERTING TEMP FROM ARRAY TO OBJECT
     // for (let i = 0; i < temp.length; i++) {
-    //   if (temp[i] < 0) { temp[i] = 0; }
-    // }
-    return temp;
-  }
-
-  checkInventory(name){
-    for (let i = 0; i < this.inventory.bag.length; i++) {
-      if (this.inventory.bag[i].name === name) {return true;}
+      //   if (temp[i] < 0) { temp[i] = 0; }
+      // }
+      return temp;
     }
-  return false;
-  }
 
-  resetInventory() {
-    let temp = [];
-    for (let i = 0; i < this.inventory.bag.length; i++) {
-      if (this.inventory.bag[i]) {
-        temp.push(this.inventory.bag[i]);
+    checkInventory(name){
+      for (let i = 0; i < this.inventory.bag.length; i++) {
+        if (this.inventory.bag[i].name === name) {return true;}
       }
+      return false;
     }
-    this.inventory.bag = temp;
-  }
 
-}
+    resetInventory() {
+      let temp = [];
+      for (let i = 0; i < this.inventory.bag.length; i++) {
+        if (this.inventory.bag[i]) {
+          temp.push(this.inventory.bag[i]);
+        }
+      }
+      this.inventory.bag = temp;
+    }
+
+  }

@@ -20,7 +20,6 @@ let giantRat = [];
 for (let i = 0; i < rat_num; i++) {
   giantRat.push(new Character(4,2,2,2));
 }
-
 //Equipment
 //starting brawler gear
 let broadsword = new Equipment('weapon',2,0,0,0);
@@ -53,6 +52,10 @@ let charge = new Spell (3,0,10, 'str');
 let heavyBlow = new Spell (4,0,25,'str');
 // let sharpenSenses = new spell (0,0,5,'int'); // Light Heal?
 
+//Add Spells to character.spells
+for (let i = 0; i < rat_num; i++) {
+  giantRat[i].spells = [bite, tailWhip];
+}
 //Itemization
 
 //fill brawler equipment & inventory

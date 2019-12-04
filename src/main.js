@@ -45,9 +45,21 @@ $(document).ready(function(){
 
   //Caused by some combat initiator TBD
   let enemyArray = deck.giantRat; //enemy array changes depending on location or combat specs?
-  $('.enemySide').html('')
+  $('.enemySide').html('');
   for (let i = 0; i < enemyArray.length; i++) {
-    $('.enemySide').append(`<div class="enemy${i+1}"><div id="health0"></div><div class="healthBackground"><div id="en1Health"class='healthProgress'><p class="barTitle">Health</p></div></div><input type="radio" class="target" name="target" value="${i}"> en1<br>1</div>`)
+    $('.enemySide').append(`
+      <div class="enemy${i+1}">
+      <div id="health0">
+      </div>
+      <div class="healthBackground">
+      <div id="en1Health" class='healthProgress'>
+      <p class="barTitle">Health</p>
+      </div>
+      </div>
+      <input type="radio" class="target" name="target" value="${i}">en1<br>
+      1
+      </div>
+      `);
     //Insert CSS Generation Here (in relation to i or i+1)
   }
 
@@ -61,25 +73,32 @@ $(document).ready(function(){
 
   //choose enemy's target
   function doAction(character, target) {
-    let randomAction = Math.floor(Math.random()*3); //randomize action
-    console.log('function accessed');
-    switch (0) { //set 0 for testing; should be randomAction
-      case 0: //Attack Section
-      character.attack(target);
-      //html output 'Enemy Attacks'
-      console.log('attack fires');
-      break;
-      case 1: //Spell Section
+    let randomAction; //randomize action
+    let randomSpell; //randomize spell choice
+    let damage = false;
 
-      break;
-      case 2: //Item Section
+    while (damage === false) {
+      randomAction = Math.floor(Math.random()*2);
+      randomSpell = Math.floor(Math.random()* character.spells.length);
+      switch (randomSpell) { //set as number for testing; should be randomAction
+        case 0: //Attack Section
+        damage = character.attack(target);
+        //html output 'Enemy Attacks'
+        break;
+        case 1: //Spell Section
+        damage = character.cast(character.spells[randomSpell], target);
+        //html output 'Enemy Cast "Spell"'
+        break;
+        case 2: //Item Section
 
-      break;
+        break;
+      }
     }
   }
 
   doAction(enemyArray[0], player);
   console.log(player);
+  console.log(deck.giantRat);
 
 
 });
