@@ -106,7 +106,7 @@ h1 {
   position: absolute;
   right: 40%;
   top: 40%;
-  margin-bottom: 140px;
+
 }
 
 .enemy2 {
@@ -141,7 +141,7 @@ h1 {
   position: absolute;
   right: 20%;
   top: 45%;
-  margin-bottom: 140px;
+
 }
 .movementCenter {
   right: 50%;
@@ -258,10 +258,12 @@ h1 {
 #castSubmit {
   margin-right: 80px;
 }
-#en1Damage {
+
+#damageOutput {
   font-size: 20px;
   color: red;
 }
+
 #useSubmit {
   margin-right: 80px;
 }
