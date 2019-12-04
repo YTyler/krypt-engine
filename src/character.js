@@ -75,6 +75,8 @@ export class Character {
       }
       item.quantity -= 1;
       if (item.quantity === 0){
+        this.inventory.bag[this.searchItem(item.name)] = '';
+        this.resetInventory();
       } // finish after pickUp function
     } else {
       return 'not available';
