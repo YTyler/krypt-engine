@@ -1,3 +1,5 @@
+import {Item} from './item.js'
+
 export class Character {
   constructor(str, int, con, mag){
   //Character Attributes
@@ -56,19 +58,37 @@ export class Character {
     }
   }
 
+  pickUp(item){
+    if(this.checkInventory(item.name)){
+       this.inventory.bag[this.searchItem(item.name)].quantity += 1;
+      }
+    else {
+      this.inventory.bag.push(new Item(item.name, item.amount, item.type, item.quantity));
+    }
+  }
+
   use(item, target) {
-    if (this.checkInventory(item)){
-      target[item.type].value += item.amount;
-      if (target[item.type].value > target[item.type].max) {
+    if (this.checkInventory(item.name)){
+      target[item.type].value += item.amount; //change value
+      if (target[item.type].value > target[item.type].max) { //limit change to max value
         target[item.type].value = target[item.type].max;
       }
       item.quantity -= 1;
+      if (item.quantity === 0){
+      } // finish after pickUp function
     } else {
       return 'not available';
     }
   }
 
   //Utility Methods
+  searchItem(name) {
+    for (let i = 0; i < this.inventory.bag.length; i++) {
+      if (this.inventory.bag[i].name === name) { return i; }
+    }
+  }
+
+
   armorValues() {
     let temp = [0,0,0,0];
     const keys = Object.keys(this.equipment);
@@ -86,11 +106,11 @@ export class Character {
     return temp;
   }
 
-  checkInventory(item){
-    for (var i = 0; i < this.inventory.bag.length; i++) {
-      if (this.inventory.bag[i] === item) {return true;}
-      else {return false;}
+  checkInventory(name){
+    for (let i = 0; i < this.inventory.bag.length; i++) {
+      if (this.inventory.bag[i].name === name) {return true;}
     }
+  return false;
   }
 
   resetInventory() {

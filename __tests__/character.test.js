@@ -16,6 +16,7 @@ let leatherBoots
 let criticalStrike
 let magicRockets
 let healthPotion
+let redBerry
 
   beforeEach(() => {
     player = new Character(7,3,5,5);
@@ -26,8 +27,8 @@ let healthPotion
     leatherBoots = new Equipment('legs',0,0,1,0);
     criticalStrike = new Spell(.5,0,10);
     magicRockets = new Spell(2,0,10);
-    healthPotion = new Item (25,'health');
-
+    healthPotion = new Item ('healthPotion', 25,'health');
+    redBerry = new Item('redBerry', 10,'health');
     player.equip(longSword);
     player.equip(fingerGloves);
     player.equip(leatherBody);
@@ -66,7 +67,7 @@ let healthPotion
   });
   test('using items successfully', () => {
     player.health.value = 10;
-    player.inventory.bag.push(healthPotion);
+    player.inventory.bag.push(redBerry, healthPotion);
     player.use(healthPotion, player);
     expect(player.health.value).toEqual(35);
   });
@@ -79,7 +80,16 @@ let healthPotion
   test('test inventory reset', () => {
     player.inventory.bag = [12, '', 5, 6, '', 25];
     player.resetInventory();
-    expect(player.inventory.bag).toEqual([12, 5, 6, 25])
-
+    expect(player.inventory.bag).toEqual([12, 5, 6, 25]);
+  });
+  test('test pickup new item', () => {
+    player.pickUp(redBerry);
+    player.pickUp(healthPotion);
+    expect(player.inventory.bag[0]).toEqual(redBerry);
+  });
+  test('test pickup duplicate item', () => {
+    player.pickUp(redBerry);
+    player.pickUp(redBerry);
+    expect(player.inventory.bag[0].quantity).toEqual(2);
   });
 });
