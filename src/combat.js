@@ -9,11 +9,13 @@ import {Item} from './item.js';
 import * as deck from './deck.js';
 
 const player = deck.brawler;
-// const = playerTurn = true;
+
 
 export function combatStart(enemies) {
   let enemyArray = enemies; //enemy array changes depending on location or combat specs?
   $('.enemySide').html(''); //clears enemy slots
+console.log(enemies);
+
 
   for (let i = 0; i < enemyArray.length; i++) { //populates enemies
     $('.enemySide').append(`
@@ -32,41 +34,35 @@ export function combatStart(enemies) {
     }
 
     console.log(player);
-    // while (player.health.value > 0) {
+    while (player.health.value > 0) {
+      player.health.value -= 20;
+      console.log(player.health.value);
       //Player turn
+
       let deadCount = 0;
-
-
+      // alert("CombatStart")
       if (deadCount < enemyArray.length) {
         console.log("LoopStart");
-        // let turn = false;
+
         $('#attackSubmit').click(function() {
           console.log("Async");
-          // console.log(turn);
           let target = enemyArray[parseInt($("input[name=target]:checked").val())];
           let damage = player.attack(target);
           console.log("damage");
-
-
           let damageNum = $("input[name=target]:checked").val();
-
           console.log("damageNum");
 
-          $(`#health${damageNum}`).html(`<p id="damageOutput">${damage}</p>`);
-          setTimeout(function(){
-
-            $(`#${target} + Health`).html(``);
-          }, 3000);
+          // $(`#health${damageNum}`).html(`<p id="damageOutput">${damage}</p>`);
+          // setTimeout(function(){
+          //
+          //   $(`#${target} + Health`).html(``);
+          //   }, 3000);
           // turn = true
 
           console.log("Async");
 
-          // async (() => {
-            // console.log(turn);
           });
-          // let nextTurn = await (setTimeout() === true);
 
-          // })();
           // Add fade-out and sound
           console.log("71");
           // MonsterTurn
@@ -82,11 +78,11 @@ export function combatStart(enemies) {
             }
             console.log("Async");
           }
-          alert('end of if')
+          // alert('end of if')
         } else {
           alert("youWinner you won");
-          // break;
+          break;
         }
-      // }
-      $('#youAreDead').show();
+      }
+      // $('#youAreDead').show();
     }

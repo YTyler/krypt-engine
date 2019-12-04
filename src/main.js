@@ -29,8 +29,8 @@ $(document).ready(function(){
 
   $("#caveNarration").click(function() {
     (async() => {
-      await $(".combatWindow").show();
-      await $("#caveNarration").hide();
+      $(".combatWindow").show();
+      $("#caveNarration").hide();
       combatStart(deck.giantRat);
     })();
   });
