@@ -7,7 +7,7 @@ import {Equipment} from './equipment.js';
 import {Item} from './item.js';
 import * as deck from './deck.js';
 
-
+let enemyArray;
 
 $(document).ready(function(){
   //Navigation
@@ -43,18 +43,8 @@ $(document).ready(function(){
   //Combat
   const player = deck.brawler;
 
-  $('#attackSubmit').click(function() {
-    let target = deck.giantRat[parseInt($("input[name=target]:checked").val())];
-    // let target = deck[$("input[name=target]:checked").val()]; //val = 'giantRat[0]'
-    console.log(target);
-    let damage = player.attack(target); //player attackSubmit
-    //update displayed health
-  });
-
-  let enemyArray = deck.giantRat; //change enemyArray by button click?
-  $('#attackSubmit').click(function() {
-
-    });
+//Caused by some combat initiator TBD
+  let enemyArray = deck.giantRat; //enemy array changes depending on location or combat specs?
     $('.enemySide').html('')
     for (let i = 0; i < enemyArray.length; i++) {
       $('.enemySide').append(`
@@ -70,5 +60,13 @@ $(document).ready(function(){
         1
         </div>
         `)
+        //Insert CSS Generation Here (in relation to i or i+1)
       }
+
+      $('#attackSubmit').click(function() {
+        let target = enemyArray[parseInt($("input[name=target]:checked").val())];
+        console.log(target);
+        let damage = player.attack(target); //player attacks
+        //update displayed health
+      });
 });
