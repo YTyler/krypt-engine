@@ -18,7 +18,7 @@ let thief = new Character(7,5,5,5);
 //giant rats
 let giantRat = [];
 for (let i = 0; i < rat_num; i++) {
-  giantRat.push(new Character('rat Stats',2,2,2,2));
+  giantRat.push(new Character(2,2,2,2));
 }
 
 //Equipment
