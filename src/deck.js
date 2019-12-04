@@ -5,7 +5,7 @@ import {Item} from './item.js';
 export {brawler, mage, thief, giantRat};
 
 //ENEMY QUANTITIES
-let rat_num = 5;
+let rat_num = 4;
 
 //INITIALIZATION
 

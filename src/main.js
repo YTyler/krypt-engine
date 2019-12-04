@@ -43,27 +43,32 @@ $(document).ready(function(){
   //Combat
   const player = deck.brawler;
 
-
   $('#attackSubmit').click(function() {
     let target = deck.giantRat[parseInt($("input[name=target]:checked").val())];
     // let target = deck[$("input[name=target]:checked").val()]; //val = 'giantRat[0]'
     console.log(target);
-    let damage = player.attack(target);
-    // let damageNum = $("input[name=target]:checked").val()
-
-
-    $(`#health${damageNum}`).html(`<p id="damageOutput">${damage}</p>`);
-
-    setTimeout(function(){
-      $(`#${target} + Health`).html(``);
-    }, 3000);
-
-    // let target = "en1";
-    // let damage = 25;
-    // $("#en1Damage").html("hi");
-    // setTimeout(function(){
-      //   $("#en1Damage").html("");
-      // }, 3000);
-      // console.log(damage);
-    });
+    let damage = player.attack(target); //player attackSubmit
+    //update displayed health
   });
+
+  let enemyArray = deck.giantRat; //change enemyArray by button click?
+  $('#attackSubmit').click(function() {
+
+    });
+    $('.enemySide').html('')
+    for (let i = 0; i < enemyArray.length; i++) {
+      $('.enemySide').append(`
+        <div class="enemy${i+1}">
+        <div id="health0">
+        </div>
+        <div class="healthBackground">
+        <div id="en1Health"class='healthProgress'>
+        <p class="barTitle">Health</p>
+        </div>
+        </div>
+        <input type="radio" class="target" name="target" value="${i}"> en1<br>
+        1
+        </div>
+        `)
+      }
+});
