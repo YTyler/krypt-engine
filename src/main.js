@@ -8,7 +8,6 @@ import {Item} from './item.js';
 import * as deck from './deck.js';
 import {combatStart} from './combat.js';
 
-let enemyArray;
 
 $(document).ready(function(){
   //Navigation
@@ -29,9 +28,11 @@ $(document).ready(function(){
   });
 
   $("#caveNarration").click(function() {
-    $("#caveNarration").hide();
-    $(".combatWindow").show();
-    combatStart(deck.giantRat);
+    (async() => {
+      await $(".combatWindow").show();
+      await $("#caveNarration").hide();
+      combatStart(deck.giantRat);
+    })();
   });
 
   $(".goCrypt").click(function() {
