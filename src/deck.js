@@ -2,6 +2,7 @@ import {Character} from './character.js';
 import {Equipment} from './equipment.js';
 // import {Spell} from './spell.js';
 import {Item} from './item.js';
+export {brawler, mage, thief, giantRat};
 
 //ENEMY QUANTITIES
 let rat_num = 5;
