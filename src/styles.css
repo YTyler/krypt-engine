@@ -1,10 +1,18 @@
 body {
-  background-color: gray;
+  background-image: url(https://previews.123rf.com/images/welcomia/welcomia1403/welcomia140300106/26623219-aged-wood-plank-background-aged-wood-closeup-backdrop-.jpg);
 }
 
 h1 {
-  margin-left: 40%;
-  margin-right: 40%;
+  font-family: cursive;
+  font-weight: 600;
+  margin-left: 30%;
+  margin-top: 50px;
+  text-align: center;
+  background-color: #e6c687;
+  width: 40%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 6px solid #7B4A28;
 }
 
 .backgroundImage {
@@ -13,12 +21,12 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
-
   width: 1188px;
   height: 960px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: absolute;
 }
 
 .combatWindow {
@@ -294,7 +302,11 @@ h1 {
 #crypt {
   display: none;
 }
-#youAreDead {
+#death {
+  display: none;
+}
+
+#win {
   display: none;
 }
 
@@ -313,6 +325,7 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 150px;
 }
 
 

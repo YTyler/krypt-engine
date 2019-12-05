@@ -101,10 +101,8 @@ $(document).ready(function(){
       //PLAYER ACTION
       if (action === "attackSubmit") {
         player.attack(target);
-        console.log(target);
       } else if (action === "castSubmit"){
         player.cast(player.spells[0], target);
-        console.log(target);
       } else if (action === "useSubmit"){
         console.log('item');
       } else {
@@ -112,11 +110,22 @@ $(document).ready(function(){
       }
 
       //LOOP ENEMY ACTIONS
+      let deadCount = 0;
       for (let i=0; i<enemyArray.length; i++) {
         setTimeout(() => {doAction(enemyArray[i], player)},3000);
-        console.log(player);
+        if (enemyArray[i].health.value <= 0){
+          deadCount += 1;
+        }
       }
-
-
+      console.log(player);
+      if (player.health.value <= 0){
+        $(".cave").hide();
+        $(".combatWindow").hide();
+        $("#death").show();
+      }else if(deadCount === enemyArray.length) {
+        $(".cave").hide();
+        $(".combatWindow").hide();
+        $("#win").show();
+      }
     })
   });
