@@ -13,7 +13,6 @@ const player = deck.brawler;
 export function combatStart(enemies) {
   let enemyArray = enemies; //enemy array changes depending on location or combat specs?
   $('.enemySide').html(''); //clears enemy slots
-  console.log(enemies);
 
 
   for (let i = 0; i < enemyArray.length; i++) { //populates enemies
@@ -31,14 +30,13 @@ export function combatStart(enemies) {
       </div>
       `)
     }
-    console.log(player);
+
     let deadCount = 0;
+
     while (deadCount < enemyArray.length && player.health.value > 0) {
 
       player.health.value -= 10;
       enemyArray[0].health.value -= 10;
-      console.log(player.health.value);
-      console.log(enemyArray[0].health.value);
 
       deadCount = 0;
       for (let j = 0; j < enemyArray.length; j++) {
@@ -49,15 +47,23 @@ export function combatStart(enemies) {
           //wait
         }
       }
+      let move = false;
+      while(move === false) {
+        console.log('inside while');
+        setTimeout(() => {
+          console.log('inside timeout');
+        $('#attackSubmit').click(function() {
+            let target = enemyArray[parseInt($("input[name=target]:checked").val())];
+            let damage = player.attack(target);
 
-      $('#attackSubmit').click(function() {
-        let target = enemyArray[parseInt($("input[name=target]:checked").val())];
-        let damage = player.attack(target);
-      });
+            move = true;
+          }, 2000);
+        });
+      }
     }
     if (player.health.value > 0) {
       alert("you win!")
     } else {
-      alert("you lose :( ")
+      console.log("you lose :( ")
     }
   }

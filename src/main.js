@@ -28,11 +28,10 @@ $(document).ready(function(){
   });
 
   $("#caveNarration").click(function() {
-    (async() => {
+
       $(".combatWindow").show();
       $("#caveNarration").hide();
-      combatStart(deck.giantRat);
-    })();
+      setTimeout(() => { combatStart(deck.giantRat)},1000);
   });
 
   $(".goCrypt").click(function() {
@@ -43,4 +42,5 @@ $(document).ready(function(){
   $("#cryptNarration").click(function() {
     $("#cryptNarration").hide();
   });
+
 });
