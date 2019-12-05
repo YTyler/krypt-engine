@@ -9,6 +9,7 @@ import * as deck from './deck.js';
 import {combatStart} from './combat.js';
 
 const player = deck.thief;
+$('.playerProgress').animate({ width: player.health.value + "%"});
 
 $(document).ready(function(){
   //Navigation
@@ -68,41 +69,61 @@ $(document).ready(function(){
         break;
       }
     }
+    return damage;
   }
 
-  function fillEnemies(enemies) {
+  let enemyArray;
 
-    $('.enemySide').html(''); //clears enemy slots
+    function fillEnemies(enemies) {
 
-    for (let i = 0; i < enemies.length; i++) { //populates enemies
-      $('.enemySide').append(`
-        <div class="enemy${i+1}">
-        <div id="health0">
-        </div>
-        <div class="healthBackground">
-        <div id="en1Health"class='healthProgress'>
-        <p class="barTitle">Health</p>
-        </div>
-        </div>
-        <input type="radio" class="target" name="target" value="${i}">en1<br>
-        1
-        </div>
-        `)
+      enemyArray = enemies;
+
+      $('.enemySide').html(''); //clears enemy slots
+
+      for (let i = 0; i < enemyArray.length; i++) { //populates enemies
+        $('.enemySide').append(`
+          <div class="enemy${i+1}">
+          <div id="health${i+1}">
+          <p><br></p>
+          </div>
+          <div class="healthBackground">
+          <div id="en${i+1}Health" class='healthProgress'>
+          <p class="barTitle">Health</p>
+          </div>
+          </div>
+          <input type="radio" class="target" name="target" value="${i}"> enemy ${i+1}<br>
+          </div>
+          `)
+          $(`#en${i+1}Health`).animate({ width: (enemyArray[i].health.value/enemyArray[i].health.max)*100 + "%"});
+        }
+
+
       }
-    }
+
+      $('.playerProgress').animate({ width: (player.health.value/player.health.max)*100 + "%"});
 
     $("#combatIntake").on('click', '.combatButton', function(event){
       event.preventDefault();
       let action = this['id'];
-      let enemyArray = deck.giantRat;
-      let target = enemyArray[parseInt($("input[name=target]:checked").val())]
+      let targetindex = parseInt($("input[name=target]:checked").val());
+      let target = enemyArray[targetindex];
 
 
       //PLAYER ACTION
       if (action === "attackSubmit") {
-        player.attack(target);
+        let damage = player.attack(target);
+
+        setTimeout(function(){
+          setTimeout(() => {
+          $(`#health${targetindex + 1}`).html('<p><br></p>');
+        },300);
+        $(`#health${targetindex + 1}`).html(`<p id="damageOutput">${damage}</p>`);
+
+        }, 600);
+
       } else if (action === "castSubmit"){
         player.cast(player.spells[0], target);
+
       } else if (action === "useSubmit"){
         console.log('item');
       } else {
@@ -111,13 +132,22 @@ $(document).ready(function(){
 
       //LOOP ENEMY ACTIONS
       let deadCount = 0;
-      for (let i=0; i<enemyArray.length; i++) {
-        setTimeout(() => {doAction(enemyArray[i], player)},3000);
+      let enemyDamage
+
+      for (let i=0; i <enemyArray.length; i++) {
+        setTimeout(() => {
+          enemyDamage = doAction(enemyArray[i], player)
+          $(`#en${i+1}Health`).animate({ width: (enemyArray[i].health.value/enemyArray[i].health.max)*100 + "%"});
+          $('.playerProgress').animate({ width: (player.health.value/player.health.max)*100 + "%"});
+          setTimeout(() => {
+            $(`#playerDamage`).html('<p><br></p>');
+          },300);
+          $(`#playerDamage`).html(`<p id="damageOutput">${enemyDamage}</p>`);
+        },600*(i+1));
         if (enemyArray[i].health.value <= 0){
           deadCount += 1;
         }
       }
-      console.log(player);
       if (player.health.value <= 0){
         $(".cave").hide();
         $(".combatWindow").hide();

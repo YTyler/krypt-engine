@@ -12,7 +12,7 @@ let rat_num = 3;
 //Characters
 let brawler = new Character(5,3,8,3);
 let mage = new Character(2,9,4,8);
-let thief = new Character(250,5,7,5);
+let thief = new Character(10,5,7,5);
 
 //Enemy Arrays
 //giant rats
