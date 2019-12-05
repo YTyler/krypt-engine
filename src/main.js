@@ -43,4 +43,28 @@ $(document).ready(function(){
     $("#cryptNarration").hide();
   });
 
+  //choose enemy's target
+  function doAction(character, target) {
+    let randomAction; //randomize action
+    let randomSpell; //randomize spell choice
+    let damage = false;
+
+    while (damage === false) {
+      randomAction = Math.floor(Math.random()*2);
+      randomSpell = Math.floor(Math.random()* character.spells.length);
+      switch (randomSpell) { //set as number for testing; should be randomAction
+        case 0: //Attack Section
+        damage = character.attack(target);
+        //html output 'Enemy Attacks'
+        break;
+        case 1: //Spell Section
+        damage = character.cast(character.spells[randomSpell], target);
+        //html output 'Enemy Cast "Spell"'
+        break;
+        case 2: //Item Section IN CONSTRUCTION
+
+        break;
+      }
+    }
+  }
 });

@@ -25,8 +25,7 @@ let redBerry
     fingerGloves = new Equipment('hands',0,0,1,0);
     leatherBody = new Equipment('body',0,0,2,0);
     leatherBoots = new Equipment('legs',0,0,1,0);
-    criticalStrike = new Spell(.5,0,10);
-    magicRockets = new Spell(2,0,10);
+    criticalStrike = new Spell(1,2,20,'str');
     healthPotion = new Item ('healthPotion', 25,'health');
     redBerry = new Item('redBerry', 10,'health');
     player.equip(longSword);
@@ -49,18 +48,14 @@ let redBerry
   });
   test('aggregate armor values', () => {
     let armorTest = player.armorValues();
-    expect(armorTest[0]).toEqual(3);
-    expect(armorTest[1]).toEqual(0);
-    expect(armorTest[2]).toEqual(3);
-    expect(armorTest[3]).toEqual(0);
+    expect(armorTest.str).toEqual(3);
+    expect(armorTest.int).toEqual(-1);
+    expect(armorTest.con).toEqual(3);
+    expect(armorTest.mag).toEqual(0);
   });
   test('combat test',() => {
     player.attack(enemy);
     expect(enemy.health.value).toEqual(10);
-  });
-  test('spells-combat test', () => {
-    player.castStr(criticalStrike, enemy);
-    expect(enemy.health.value).toEqual(6.5);
   });
   test('test if item not found', () => {
     expect(player.use(healthPotion, player)).toEqual('not available');
@@ -91,5 +86,9 @@ let redBerry
     player.pickUp(redBerry);
     player.pickUp(redBerry);
     expect(player.inventory.bag[0].quantity).toEqual(2);
+  });
+  test('test spellcasting', () => {
+    expect(player.cast(criticalStrike, enemy)).toEqual(13); //check damage calculation
+    expect(player.magic.value).toEqual(30); //check cost usage
   });
 });
