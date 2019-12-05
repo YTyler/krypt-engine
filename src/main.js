@@ -30,11 +30,8 @@ $(document).ready(function(){
   });
 
   $("#caveNarration").click(function() {
-
-    $(".combatWindow").show();
     $("#caveNarration").hide();
-    fillEnemies(deck.giantRat)
-    setTimeout(() => { combatStart(deck.giantRat)},1000);
+
   });
 
   $(".goCrypt").click(function() {
@@ -43,7 +40,10 @@ $(document).ready(function(){
   });
 
   $("#cryptNarration").click(function() {
+    $(".combatWindow").show();
     $("#cryptNarration").hide();
+    fillEnemies(deck.giantRat)
+    setTimeout(() => { combatStart(deck.giantRat)},1000);
   });
 
   //choose enemy's target
@@ -55,7 +55,7 @@ $(document).ready(function(){
     while (damage === false) {
       randomAction = Math.floor(Math.random()*2);
       randomSpell = Math.floor(Math.random()* character.spells.length);
-      switch (0) { //set as number for testing; should be randomAction
+      switch (randomAction) { //set as number for testing; should be randomAction
         case 0: //Attack Section
         damage = character.attack(target);
         //html output 'Enemy Attacks'
@@ -149,11 +149,11 @@ $(document).ready(function(){
         }
       }
       if (player.health.value <= 0){
-        $(".cave").hide();
+        $("#crypt").hide();
         $(".combatWindow").hide();
         $("#death").show();
       }else if(deadCount === enemyArray.length) {
-        $(".cave").hide();
+        $("#crypt").hide();
         $(".combatWindow").hide();
         $("#win").show();
       }
