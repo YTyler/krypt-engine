@@ -68,7 +68,7 @@ h1 {
 
 .healthProgress {
   border-radius: 20px;
-  background-color: green;
+  background-color: #4BBF46;
   width: 0% ;
   height: 25px;
 }
@@ -270,8 +270,9 @@ h1 {
 }
 
 #damageOutput {
-  font-size: 20px;
-  color: red;
+  font-size: 30px;
+  font-weight: 600;
+  color: darkred;
 }
 
 #useSubmit {
@@ -288,7 +289,7 @@ h1 {
 
 #healthProgress {
   border-radius: 20px;
-  background-color: green;
+  background-color: #4BBF46;
   width: 0% ;
   height: 25px;
 }
@@ -338,7 +339,7 @@ h1 {
 }
 #magicProgress {
   border-radius: 20px;
-  background-color: gold;
-  width: 0% ;
+  background-color: #23B9E5;
+  width: 70% ;
   height: 25px;
 }
