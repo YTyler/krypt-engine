@@ -8,6 +8,7 @@ import {Item} from './item.js';
 import * as deck from './deck.js';
 import {combatStart} from './combat.js';
 
+const player = deck.thief;
 
 $(document).ready(function(){
   //Navigation
@@ -29,9 +30,10 @@ $(document).ready(function(){
 
   $("#caveNarration").click(function() {
 
-      $(".combatWindow").show();
-      $("#caveNarration").hide();
-      setTimeout(() => { combatStart(deck.giantRat)},1000);
+    $(".combatWindow").show();
+    $("#caveNarration").hide();
+    fillEnemies(deck.giantRat)
+    setTimeout(() => { combatStart(deck.giantRat)},1000);
   });
 
   $(".goCrypt").click(function() {
@@ -52,7 +54,7 @@ $(document).ready(function(){
     while (damage === false) {
       randomAction = Math.floor(Math.random()*2);
       randomSpell = Math.floor(Math.random()* character.spells.length);
-      switch (randomSpell) { //set as number for testing; should be randomAction
+      switch (0) { //set as number for testing; should be randomAction
         case 0: //Attack Section
         damage = character.attack(target);
         //html output 'Enemy Attacks'
@@ -67,4 +69,54 @@ $(document).ready(function(){
       }
     }
   }
-});
+
+  function fillEnemies(enemies) {
+
+    $('.enemySide').html(''); //clears enemy slots
+
+    for (let i = 0; i < enemies.length; i++) { //populates enemies
+      $('.enemySide').append(`
+        <div class="enemy${i+1}">
+        <div id="health0">
+        </div>
+        <div class="healthBackground">
+        <div id="en1Health"class='healthProgress'>
+        <p class="barTitle">Health</p>
+        </div>
+        </div>
+        <input type="radio" class="target" name="target" value="${i}">en1<br>
+        1
+        </div>
+        `)
+      }
+    }
+
+    $("#combatIntake").on('click', '.combatButton', function(event){
+      event.preventDefault();
+      let action = this['id'];
+      let enemyArray = deck.giantRat;
+      let target = enemyArray[parseInt($("input[name=target]:checked").val())]
+
+
+      //PLAYER ACTION
+      if (action === "attackSubmit") {
+        player.attack(target);
+        console.log(target);
+      } else if (action === "castSubmit"){
+        player.cast(player.spells[0], target);
+        console.log(target);
+      } else if (action === "useSubmit"){
+        console.log('item');
+      } else {
+        console.log("not connected");
+      }
+
+      //LOOP ENEMY ACTIONS
+      for (let i=0; i<enemyArray.length; i++) {
+        setTimeout(() => {doAction(enemyArray[i], player)},3000);
+        console.log(player);
+      }
+
+
+    })
+  });
