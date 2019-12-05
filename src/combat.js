@@ -10,7 +10,6 @@ import * as deck from './deck.js';
 
 const player = deck.brawler;
 
-
 export function combatStart(enemies) {
   let enemyArray = enemies; //enemy array changes depending on location or combat specs?
   $('.enemySide').html(''); //clears enemy slots
@@ -32,58 +31,33 @@ export function combatStart(enemies) {
       </div>
       `)
     }
-
+    console.log(player);
     let deadCount = 0;
+    while (deadCount < enemyArray.length && player.health.value > 0) {
 
-    while (player.health.value > 0) {
-      player.health.value -= 20; //kills player
+      player.health.value -= 10;
       enemyArray[0].health.value -= 10;
       console.log(player.health.value);
       console.log(enemyArray[0].health.value);
 
-      //Player turn
-
-      // alert("CombatStart")
-      // if (deadCount <= enemyArray.length) {
-        console.log("LoopStart");
-
-        // (async() => {
-          $('#attackSubmit').click(function() {
-            let target = enemyArray[parseInt($("input[name=target]:checked").val())];
-            let damage = player.attack(target);
-            console.log("damage");
-
-            // let damageNum = $("input[name=target]:checked").val();
-            // $(`#health${damageNum}`).html(`<p id="damageOutput">${damage}</p>`);
-            // setTimeout(function(){
-              //
-              //   $(`#${target} + Health`).html(``);
-              //   }, 3000);
-              // turn = true
-
-            });
-            // })();
-
-            // MonsterTurn
-            for (let j = 0; j < enemyArray.length; j++) {
-              console.log("j="+j);
-              if (enemyArray[j].health.value >= 0) {
-              setInterval(() => {
-                (enemyArray[j].attack(player));
-              }, 3000);
-            } else {
-                deadCount += 1;
-                if (deadCount >= enemyArray.length) {
-                  alert("youWinner you won");
-                  break;
-                } else {
-                  console.log("WHatever keep going");
-                }
-
-              }
-              console.log("end of for");
-            }
-
+      deadCount = 0;
+      for (let j = 0; j < enemyArray.length; j++) {
+        if (enemyArray[j].health.value < 1) {
+          deadCount += 1;
+        } else {
+          //Attack
+          //wait
         }
-        $('#youAreDead').show();
       }
+
+      $('#attackSubmit').click(function() {
+        let target = enemyArray[parseInt($("input[name=target]:checked").val())];
+        let damage = player.attack(target);
+      });
+    }
+    if (player.health.value > 0) {
+      alert("you win!")
+    } else {
+      alert("you lose :( ")
+    }
+  }
