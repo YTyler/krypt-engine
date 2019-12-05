@@ -18,7 +18,7 @@ let thief = new Character(7,5,5,5);
 //giant rats
 let giantRat = [];
 for (let i = 0; i < rat_num; i++) {
-  giantRat.push(new Character(4,2,2,2));
+  giantRat.push(new Character(4,2,5,2));
 }
 //Equipment
 //starting brawler gear
@@ -48,14 +48,27 @@ let bluePotion = new Item(25, 'magic');
 //Spells
 let bite = new Spell(4,0,15,'str');
 let tailWhip =  new Spell (2,0,5,'str');
-let charge = new Spell (3,0,10, 'str');
-let heavyBlow = new Spell (4,0,25,'str');
+
+let charge = new Spell (2,5,10, 'str');
+let heavyBlow = new Spell (3,6,25,'str');
+
+let fire = new Spell (4,5,10,'int');
+let firaga = new Spell (6,10,20,'int');
+
+let cheapShot = new Spell (5,3,10,'str');
+let sneakAttack = new Spell (6,5,25,'str');
 // let sharpenSenses = new spell (0,0,5,'int'); // Light Heal?
 
 //Add Spells to character.spells
 for (let i = 0; i < rat_num; i++) {
   giantRat[i].spells = [bite, tailWhip];
 }
+
+brawler.spells = [charge, heavyBlow]; //add brawler skills
+mage.spells = [fire, firaga]; //add mage skills
+thief.spells = [cheapShot, sneakAttack]; //add thief spells
+
+
 //Itemization
 
 //fill brawler equipment & inventory

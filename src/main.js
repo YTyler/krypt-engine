@@ -89,16 +89,11 @@ $(document).ready(function(){
         damage = character.cast(character.spells[randomSpell], target);
         //html output 'Enemy Cast "Spell"'
         break;
-        case 2: //Item Section
+        case 2: //Item Section IN CONSTRUCTION
 
         break;
       }
     }
   }
-
-  doAction(enemyArray[0], player);
-  console.log(player);
-  console.log(deck.giantRat);
-
 
 });
