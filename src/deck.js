@@ -12,13 +12,13 @@ let rat_num = 3;
 //Characters
 let brawler = new Character(5,3,8,3);
 let mage = new Character(2,9,4,8);
-let thief = new Character(7,5,5,5);
+let thief = new Character(7,5,7,5);
 
 //Enemy Arrays
 //giant rats
 let giantRat = [];
 for (let i = 0; i < rat_num; i++) {
-  giantRat.push(new Character(4,2,5,2));
+  giantRat.push(new Character(3,2,3,2));
 }
 //Equipment
 //starting brawler gear
